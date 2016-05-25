@@ -14,11 +14,15 @@ public class CharacterBuilder : MonoBehaviour {
 
     public void walk1()
     {
-        GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(Walter ? "character_walking_1_walter" : "character_walking_1");
+        transform.Find("body").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("char_walk0_body");
+        transform.Find("trousers").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("char_walk0_trousers_oliv");
+        transform.Find("top").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("char_walk0_top_shirtgrayorange");
     }
 
     public void walk2()
     {
-        GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(Walter ? "character_walking_2_walter" : "character_walking_2");
+        transform.Find("body").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("char_walk1_body");
+        transform.Find("trousers").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("char_walk1_trousers_oliv");
+        transform.Find("top").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("char_walk1_top_shirtgrayorange");
     }
 }
