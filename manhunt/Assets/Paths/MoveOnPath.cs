@@ -13,7 +13,6 @@ public class MoveOnPath : MonoBehaviour {
     private bool forward = true;
 
     Vector3 last_position;
-    Vector3 current_position;
 
 	// Use this for initialization
 	void Start () {
@@ -59,10 +58,6 @@ public class MoveOnPath : MonoBehaviour {
                 }
             }
         }
-
-        transform.position = Vector3.MoveTowards(transform.position, Path.path_objs[CurrentWayPointID].position, Time.deltaTime * Speed);
-
-        //var rotation = Quaternion.LookRotation(Path.path_objs[CurrentWayPointID].position - transform.position, Vector3.left);
-        //transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * RotationSpeed);
+        transform.position = Vector3.MoveTowards(transform.position, Path.path_objs[CurrentWayPointID].position, Time.deltaTime * Speed / 10f);
     }
 }

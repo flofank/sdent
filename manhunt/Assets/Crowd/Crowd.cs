@@ -3,16 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Crowd : MonoBehaviour {
-    private List<GameObject> characters = new List<GameObject>();
-    public int CrowdSize = 5;
     public GameObject CharacterPrefab;
+    public int crowdSize;
 
 	// Use this for initialization
 	void Start () {
-	    for (int i = 0; i <= CrowdSize; i++)
+        for (int i = 0; i < crowdSize; i++)
         {
             GameObject character = Instantiate<GameObject>(CharacterPrefab);
-            character.GetComponent<MoveOnPath>().Speed = Random.Range(5, 10);
+            character.transform.position = new Vector3(character.transform.position.x, character.transform.position.y, 10);
+            character.GetComponent<CharacterBuilder>().characterId = i;
+            character.GetComponent<MoveOnPath>().Speed = Random.Range(25, 100);
         }
 	}
 	

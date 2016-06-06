@@ -3,10 +3,18 @@ using System.Collections;
 
 public class CharacterBuilder : MonoBehaviour {
     public bool Walter = false;
+    public int characterId;
 	// Use this for initialization
 	void Start () {
-	
-	}
+        print("character[" + characterId + "]");
+        transform.Find("body").transform.position = new Vector3(transform.Find("body").transform.position.x, transform.Find("body").transform.position.y, characterId);
+        transform.Find("trousers").transform.position = new Vector3(transform.Find("trousers").transform.position.x, transform.Find("trousers").transform.position.y, characterId);
+        transform.Find("top").transform.position = new Vector3(transform.Find("top").transform.position.x, transform.Find("top").transform.position.y, characterId);
+        transform.Find("eye").transform.position = new Vector3(transform.Find("eye").transform.position.x, transform.Find("eye").transform.position.y, characterId);
+        transform.Find("eyebrow").transform.position = new Vector3(transform.Find("eyebrow").transform.position.x, transform.Find("eyebrow").transform.position.y, characterId);
+        transform.Find("beard").transform.position = new Vector3(transform.Find("beard").transform.position.x, transform.Find("beard").transform.position.y, characterId);
+        transform.Find("hair").transform.position = new Vector3(transform.Find("hair").transform.position.x, transform.Find("hair").transform.position.y, characterId);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -14,24 +22,27 @@ public class CharacterBuilder : MonoBehaviour {
 
     public void walk1()
     {
-        transform.Find("body").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("characters/char_walk0_body");
-        transform.Find("trousers").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("characters/char_walk0_trousers_oliv");
-        transform.Find("top").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("characters/char_walk0_top_shirtgrayorange");
+        Character c = Game.getCrowd()[characterId];
+        transform.Find("body").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("characters/body/char_walk0_body_" + c.body);
+        transform.Find("trousers").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("characters/trousers/char_walk0_trousers_" + c.trousers);
+        transform.Find("top").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("characters/top/char_walk0_top_" + c.top);
+        transform.Find("eye").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("characters/eyes/char_eyes_" + c.eye);
+        transform.Find("eyebrow").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("characters/eyebrow/char_eyebrow_" + c.eyebrow);
+        transform.Find("beard").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("characters/beard/char_beard_" + c.beard);
+        transform.Find("hair").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("characters/hair/char_hair_" + c.hair);
     }
 
     public void walk2()
     {
-        transform.Find("body").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("characters/char_walk1_body");
-        transform.Find("trousers").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("characters/char_walk1_trousers_oliv");
-        transform.Find("top").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("characters/char_walk1_top_shirtgrayorange");
+        Character c = Game.getCrowd()[characterId];
+        transform.Find("body").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("characters/body/char_walk1_body_" + c.body);
+        transform.Find("trousers").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("characters/trousers/char_walk1_trousers_" + c.trousers);
+        transform.Find("top").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("characters/top/char_walk1_top_" + c.top);
+        transform.Find("eye").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("characters/eyes/char_eyes_" + c.eye);
+        transform.Find("eyebrow").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("characters/eyebrow/char_eyebrow_" + c.eyebrow);
+        transform.Find("beard").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("characters/beard/char_beard_" + c.beard);
+        transform.Find("hair").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("characters/hair/char_hair_" + c.hair);
     }
 
-    private enum Beard {
-        black0, black1, black2, black3, black4, black5, black6, black7, black8, black9,
-        blond0, blond1, blond2, blond3, blond4, blond5, blond6, blond7, blond8, blond9,
-        red0, red1, red2, red3, red4, red5, red6, red7, red8, red9,
-        brown0, brown1, brown2, brown3, brown4, brown5, brown6, brown7, brown8, brown9
-    }
-    private enum BeardType {
-    }
+
 }
