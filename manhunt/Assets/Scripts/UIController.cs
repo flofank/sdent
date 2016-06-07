@@ -23,6 +23,11 @@ public class UIController : MonoBehaviour {
 
     public void startGame()
     {
-        SceneManager.LoadScene("park");
+        // returns random float from 0.0 to 1.0
+        float scene = Random.value;
+
+        if(scene < 0.33) SceneManager.LoadScene("park");
+        else if(scene < 0.66) SceneManager.LoadScene("forest");
+        else SceneManager.LoadScene("mall");
     }
 }
