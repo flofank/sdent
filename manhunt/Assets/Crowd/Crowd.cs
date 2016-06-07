@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public class Crowd : MonoBehaviour {
     public GameObject CharacterPrefab;
     public int crowdSize;
+    public int minSpeed = 20;
+    public int maxSpeed = 80;
 
 	// Use this for initialization
 	void Start () {
@@ -13,7 +15,7 @@ public class Crowd : MonoBehaviour {
             GameObject character = Instantiate<GameObject>(CharacterPrefab);
             character.transform.position = new Vector3(character.transform.position.x, character.transform.position.y, 10);
             character.GetComponent<CharacterBuilder>().characterId = i;
-            character.GetComponent<MoveOnPath>().Speed = Random.Range(25, 100);
+            character.GetComponent<MoveOnPath>().Speed = Random.Range(minSpeed, maxSpeed);
         }
 	}
 	

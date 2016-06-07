@@ -29,12 +29,37 @@ public class Game : MonoBehaviour {
         {
             Character c = new Character();
             c.body = (Character.Body) Enum.GetValues(typeof(Character.Body)).GetValue(r.Next(0, Enum.GetValues(typeof(Character.Body)).Length));
-            c.beard = (Character.Beard) Enum.GetValues(typeof(Character.Beard)).GetValue(r.Next(0, Enum.GetValues(typeof(Character.Beard)).Length));
+            c.haircolor = (Character.HairColor) Enum.GetValues(typeof(Character.HairColor)).GetValue(r.Next(0, Enum.GetValues(typeof(Character.HairColor)).Length));
+            if (c.body == Character.Body.bold1 && c.haircolor == Character.HairColor.red) // Invalid combination
+            {
+                continue;
+            }
+            switch (c.haircolor)
+            {
+                case Character.HairColor.blond:
+                    c.beard = (string) Enum.GetValues(typeof(Character.Beard_Blond)).GetValue(r.Next(0, Enum.GetValues(typeof(Character.Beard_Blond)).Length)).ToString();
+                    c.eyebrow = (string) Enum.GetValues(typeof(Character.Eyebrow_Blond)).GetValue(r.Next(0, Enum.GetValues(typeof(Character.Eyebrow_Blond)).Length)).ToString();
+                    c.hair = (string) Enum.GetValues(typeof(Character.Hair_Blond)).GetValue(r.Next(0, Enum.GetValues(typeof(Character.Hair_Blond)).Length)).ToString();
+                    break;
+                case Character.HairColor.brown:
+                    c.beard = (string) Enum.GetValues(typeof(Character.Beard_Brown)).GetValue(r.Next(0, Enum.GetValues(typeof(Character.Beard_Brown)).Length)).ToString();
+                    c.eyebrow = (string) Enum.GetValues(typeof(Character.Eyebrow_Brown)).GetValue(r.Next(0, Enum.GetValues(typeof(Character.Eyebrow_Brown)).Length)).ToString();
+                    c.hair = (string) Enum.GetValues(typeof(Character.Hair_Brown)).GetValue(r.Next(0, Enum.GetValues(typeof(Character.Hair_Brown)).Length)).ToString();
+                    break;
+                case Character.HairColor.red:
+                    c.beard = (string) Enum.GetValues(typeof(Character.Beard_Red)).GetValue(r.Next(0, Enum.GetValues(typeof(Character.Beard_Red)).Length)).ToString();
+                    c.eyebrow = (string) Enum.GetValues(typeof(Character.Eyebrow_Red)).GetValue(r.Next(0, Enum.GetValues(typeof(Character.Eyebrow_Red)).Length)).ToString();
+                    c.hair = (string) Enum.GetValues(typeof(Character.Hair_Red)).GetValue(r.Next(0, Enum.GetValues(typeof(Character.Hair_Red)).Length)).ToString();
+                    break;
+                case Character.HairColor.black:
+                    c.beard = (string) Enum.GetValues(typeof(Character.Beard_Black)).GetValue(r.Next(0, Enum.GetValues(typeof(Character.Beard_Black)).Length)).ToString();
+                    c.eyebrow = (string) Enum.GetValues(typeof(Character.Eyebrow_Black)).GetValue(r.Next(0, Enum.GetValues(typeof(Character.Eyebrow_Black)).Length)).ToString();
+                    c.hair = (string) Enum.GetValues(typeof(Character.Hair_Black)).GetValue(r.Next(0, Enum.GetValues(typeof(Character.Hair_Black)).Length)).ToString();
+                    break;
+            }
             c.eye = (Character.Eye) Enum.GetValues(typeof(Character.Eye)).GetValue(r.Next(0, Enum.GetValues(typeof(Character.Eye)).Length));
-            c.eyebrow = (Character.Eyebrow) Enum.GetValues(typeof(Character.Eyebrow)).GetValue(r.Next(0, Enum.GetValues(typeof(Character.Eyebrow)).Length));
             c.top = (Character.Top) Enum.GetValues(typeof(Character.Top)).GetValue(r.Next(0, Enum.GetValues(typeof(Character.Top)).Length));
             c.trousers = (Character.Trousers) Enum.GetValues(typeof(Character.Trousers)).GetValue(r.Next(0, Enum.GetValues(typeof(Character.Trousers)).Length));
-            c.hair = (Character.Hair) Enum.GetValues(typeof(Character.Hair)).GetValue(r.Next(0, Enum.GetValues(typeof(Character.Hair)).Length));
             bool contains = false;
             foreach (Character ch in crowd)
             {
