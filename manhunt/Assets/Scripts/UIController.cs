@@ -23,6 +23,6 @@ public class UIController : MonoBehaviour {
 
     public void startGame()
     {
-        SceneManager.LoadScene("scene1");
+        SceneManager.LoadScene("park");
     }
 }

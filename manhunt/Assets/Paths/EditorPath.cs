@@ -6,6 +6,7 @@ public class EditorPath : MonoBehaviour {
 
     public Color rayColor = Color.white;
     public List<Transform> path_objs = new List<Transform>();
+    public int baseLayer;
     Transform[] array;
 
     void Start()
