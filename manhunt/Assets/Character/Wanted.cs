@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Wanted : MonoBehaviour {
 
@@ -14,6 +15,6 @@ public class Wanted : MonoBehaviour {
     }
     void OnMouseDown()
     {
-        print("Clicked");
+        SceneManager.LoadScene("menu");
     }
 }
