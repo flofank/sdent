@@ -13,10 +13,18 @@ public class Crowd : MonoBehaviour {
         for (int i = 0; i < crowdSize; i++)
         {
             GameObject character = Instantiate<GameObject>(CharacterPrefab);
-            character.transform.position = new Vector3(character.transform.position.x, character.transform.position.y, 10);
-            character.GetComponent<CharacterBuilder>().characterId = i;
+            character.GetComponent<CharacterBuilder>().zLayer = i;
+            character.GetComponent<CharacterBuilder>().c = Game.getCrowd()[i];
             character.GetComponent<MoveOnPath>().Speed = Random.Range(minSpeed, maxSpeed);
         }
+
+        // Create Wanted person
+        GameObject wanted = Instantiate<GameObject>(CharacterPrefab);
+        wanted.GetComponent<CharacterBuilder>().zLayer = 99;
+        wanted.GetComponent<CharacterBuilder>().c = Game.offender;
+        wanted.GetComponent<MoveOnPath>().Speed = minSpeed - 1;
+        wanted.AddComponent<Wanted>();
+
 	}
 	
 	// Update is called once per frame

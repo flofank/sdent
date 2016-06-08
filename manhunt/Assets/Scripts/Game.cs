@@ -4,16 +4,19 @@ using System.Collections.Generic;
 using System;
 
 public class Game : MonoBehaviour {
-    public static int CROWD_SIZE = 100;
+    public static int CROWD_SIZE = 200;
+    public static int SUSPECTS = 10;
+    private static bool ready = false;
     public static List<Character> crowd;
-    private Character walter;
+    public static List<Character> suspects;
+    public static Character offender;
     private static System.Random r = new System.Random();
 
 	// Use this for initialization
 	void Start () {
-        if (crowd == null)
+        if (!ready)
         {
-            generateCrowd();
+            initializeGame();
         }
 	}
 	
@@ -21,6 +24,14 @@ public class Game : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    private static void initializeGame()
+    {
+        generateCrowd();
+        pickSuspects();
+        pickOffender();
+        ready = true;
+    }
 
     private static void generateCrowd()
     {
@@ -76,11 +87,29 @@ public class Game : MonoBehaviour {
         }
     }
 
+    private static void pickSuspects()
+    {
+        suspects = new List<Character>();
+        while (suspects.Count < SUSPECTS)
+        {
+            var i = r.Next(crowd.Count - 1);
+            suspects.Add(crowd[i]);
+            crowd.RemoveAt(i);
+        }
+    }
+
+    private static void pickOffender()
+    {
+        var i = r.Next(crowd.Count - 1);
+        offender = crowd[i];
+        crowd.RemoveAt(i);
+    }
+
     public static List<Character> getCrowd()
     {
-        if (crowd == null)
+        if (!ready)
         {
-            generateCrowd();
+            initializeGame();
         }
         return crowd;
     }
