@@ -8,7 +8,7 @@ public class UIController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        File.SetActive(false);
+        hideFile();
 	}
 	
 	// Update is called once per frame
@@ -19,6 +19,11 @@ public class UIController : MonoBehaviour {
     public void showFile()
     {
         File.SetActive(true);
+    }
+
+    public void hideFile()
+    {
+        File.SetActive(false);
     }
 
     public void startGame()
