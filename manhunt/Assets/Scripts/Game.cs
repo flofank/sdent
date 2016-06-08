@@ -7,7 +7,7 @@ public class Game : MonoBehaviour {
     public static int timeAvailable = 43200; //12h
     public static float startTime = Time.time;
     public static int CROWD_SIZE = 200;
-    public static int SUSPECTS = 10;
+    public static int SUSPECTS = 6;
     private static bool ready = false;
     public static List<Character> crowd;
     public static List<Character> suspects;

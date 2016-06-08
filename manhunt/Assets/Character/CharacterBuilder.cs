@@ -16,6 +16,7 @@ public class CharacterBuilder : MonoBehaviour {
         transform.Find("eyebrow").gameObject.GetComponent<SpriteRenderer>().sortingOrder = baseLayer + zLayer * 10 + 5;
         transform.Find("beard").gameObject.GetComponent<SpriteRenderer>().sortingOrder = baseLayer + zLayer * 10 + 6;
         transform.Find("hair").gameObject.GetComponent<SpriteRenderer>().sortingOrder = baseLayer + zLayer * 10 + 7;
+        walk1();
     }
 
     // Update is called once per frame
