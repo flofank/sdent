@@ -30,9 +30,13 @@ public class UIController : MonoBehaviour {
     {
         // returns random float from 0.0 to 1.0
         float scene = Random.value;
-
         if(scene < 0.33) SceneManager.LoadScene("park");
         else if(scene < 0.66) SceneManager.LoadScene("forest");
         else SceneManager.LoadScene("mall");
+    }
+
+    public void makeCall()
+    {
+        Game.skipTime(300);
     }
 }

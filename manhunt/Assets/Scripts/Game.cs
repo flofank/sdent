@@ -115,4 +115,14 @@ public class Game : MonoBehaviour {
         }
         return crowd;
     }
+
+    public static void skipTime(int seconds)
+    {
+        timeAvailable = timeAvailable - seconds;
+    }
+
+    public static void addTime(int seconds)
+    {
+        timeAvailable = timeAvailable + seconds;
+    }
 }
