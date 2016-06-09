@@ -30,7 +30,7 @@ public class CharacterBuilder : MonoBehaviour {
         transform.Find("trousers").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("characters/trousers/char_walk0_trousers_" + c.trousers);
         transform.Find("top").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("characters/top/char_walk0_top_" + c.top);
         transform.Find("eye").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("characters/eyes/char_eyes_" + c.eye);
-        transform.Find("eyebrow").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("characters/eyebrow/char_eyebrow_" + c.eyebrow);
+        transform.Find("eyebrow").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("characters/eyebrows/char_eyebrow_" + c.eyebrow);
         transform.Find("beard").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("characters/beard/char_beard_" + c.beard);
         transform.Find("hair").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("characters/hair/char_hair_" + c.hair);
     }
@@ -41,7 +41,7 @@ public class CharacterBuilder : MonoBehaviour {
         transform.Find("trousers").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("characters/trousers/char_walk1_trousers_" + c.trousers);
         transform.Find("top").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("characters/top/char_walk1_top_" + c.top);
         transform.Find("eye").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("characters/eyes/char_eyes_" + c.eye);
-        transform.Find("eyebrow").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("characters/eyebrow/char_eyebrow_" + c.eyebrow);
+        transform.Find("eyebrow").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("characters/eyebrows/char_eyebrow_" + c.eyebrow);
         transform.Find("beard").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("characters/beard/char_beard_" + c.beard);
         transform.Find("hair").gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("characters/hair/char_hair_" + c.hair);
     }

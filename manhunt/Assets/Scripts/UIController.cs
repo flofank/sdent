@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour {
-    public GameObject File;
+    public GameObject File = null;
 
 	// Use this for initialization
 	void Start () {
@@ -18,25 +18,79 @@ public class UIController : MonoBehaviour {
 
     public void showFile()
     {
-        File.SetActive(true);
+        if (File != null)
+        {
+            if (File.activeSelf)
+                hideFile();
+            else
+                File.SetActive(true);
+        }
     }
 
     public void hideFile()
     {
-        File.SetActive(false);
+        if (File != null)
+        {
+            File.SetActive(false);
+        }
     }
 
-    public void startGame()
+    public void loadHome()
     {
-        // returns random float from 0.0 to 1.0
-        float scene = Random.value;
-        if(scene < 0.33) SceneManager.LoadScene("park");
-        else if(scene < 0.66) SceneManager.LoadScene("forest");
-        else SceneManager.LoadScene("mall");
+        loadScene("menu");
+    }
+
+    public void loadForest()
+    {
+        loadScene("forest");
+    }
+
+    public void loadMall()
+    {
+        loadScene("mall");
+    }
+
+    public void loadPark()
+    {
+        loadScene("park");
+    }
+
+
+    private void loadScene(string scene)
+    {
+        int duration = 0;
+        string activeScene = SceneManager.GetActiveScene().name;
+
+        if ("menu".Equals(activeScene)) {
+            if ("forest".Equals(scene)) duration = 1800; // 30 min
+            else if ("park".Equals(scene)) duration = 900; // 15 min
+            else if ("mall".Equals(scene)) duration = 600; // 10 min
+        }
+        else if ("forest".Equals(activeScene))
+        {
+            if ("menu".Equals(scene)) duration = 1800; // 30 min
+            else if ("park".Equals(scene)) duration = 2100; // 35 min
+            else if ("mall".Equals(scene)) duration = 2400; // 40 min
+        }
+        else if ("park".Equals(activeScene))
+        {
+            if ("menu".Equals(scene)) duration = 900; // 15 min
+            else if ("forest".Equals(scene)) duration = 2100; // 35 min
+            else if ("mall".Equals(scene)) duration = 900; // 15 min
+        }
+        else if ("mall".Equals(activeScene))
+        {
+            if ("menu".Equals(scene)) duration = 600; // 10 min
+            else if ("forest".Equals(scene)) duration = 2400;
+            else if ("park".Equals(scene)) duration = 900; // 15 min
+        }
+
+        SceneManager.LoadScene(scene);
+        Game.skipTime(duration);
     }
 
     public void makeCall()
     {
-        Game.skipTime(300);
+        Game.skipTime(600);
     }
 }
