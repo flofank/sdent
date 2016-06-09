@@ -81,7 +81,7 @@ public class UIController : MonoBehaviour {
         else if ("mall".Equals(activeScene))
         {
             if ("menu".Equals(scene)) duration = 600; // 10 min
-            else if ("forest".Equals(scene)) duration = 2400;
+            else if ("forest".Equals(scene)) duration = 2400; // 40 min
             else if ("park".Equals(scene)) duration = 900; // 15 min
         }
 

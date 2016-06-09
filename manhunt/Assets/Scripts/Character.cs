@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Character : Component {
     public HairColor haircolor;
+    public bool hasBeard;
+    public bool isBold;
     public string beard;
     public string eyebrow;
     public Eye eye;
@@ -10,8 +12,10 @@ public class Character : Component {
     public Top top;
     public Trousers trousers;
     public Body body;
+    public Scene scene;
 
 
+    public enum Scene { forest, park, mall }
     public enum HairColor { black, blond, red, brown}
     public enum Beard_Black { black0, black1, black2, black3, black4, black5, black6, black7, black8, black9 }
     public enum Beard_Blond { blond0, blond1, blond2, blond3, blond4, blond5, blond6, blond7, blond8, blond9 }
