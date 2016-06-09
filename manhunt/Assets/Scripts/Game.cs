@@ -13,6 +13,7 @@ public class Game : MonoBehaviour {
     public static List<Character> suspects;
     public static Character offender;
     private static System.Random r = new System.Random();
+    public static int tries = 0;
 
 	// Use this for initialization
 	void Start () {

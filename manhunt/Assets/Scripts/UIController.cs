@@ -35,7 +35,7 @@ public class UIController : MonoBehaviour {
         }
     }
 
-    public void loadHome()
+    public static void loadHome()
     {
         loadScene("menu");
     }
@@ -56,7 +56,7 @@ public class UIController : MonoBehaviour {
     }
 
 
-    private void loadScene(string scene)
+    private static void loadScene(string scene)
     {
         int duration = 0;
         string activeScene = SceneManager.GetActiveScene().name;

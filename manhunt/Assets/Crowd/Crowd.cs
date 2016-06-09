@@ -46,6 +46,7 @@ public class Crowd : MonoBehaviour {
             } while (speedList.Contains(speed));
             speedList.Add(speed);
             character.GetComponent<MoveOnPath>().Speed = speed;
+            character.AddComponent<NotWanted>();
         }
 
 	}
