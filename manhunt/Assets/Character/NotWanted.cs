@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 public class NotWanted : MonoBehaviour
 {
 
+    private static int MAX_TRIES = 10;
+
     // Use this for initialization
     void Start()
     {
@@ -19,10 +21,10 @@ public class NotWanted : MonoBehaviour
     void OnMouseDown()
     {
         Game.tries++;
-        if(Game.tries >= 5)
+        if(Game.tries >= MAX_TRIES)
         {
             Game.tries = 0;
-            UIController.loadHome();
+            Game.warpTime(3600, "car", "You accused "+MAX_TRIES+" innocent people\nof being the offender...\nYou should gather additional information at home.", "menu");
         }
     }
 }

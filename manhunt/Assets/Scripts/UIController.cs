@@ -35,7 +35,23 @@ public class UIController : MonoBehaviour {
         }
     }
 
-    public static void loadHome()
+    public void loadNotes()
+    {
+        SceneManager.LoadScene("notes");
+    }
+
+    public void exitNotes()
+    {
+        SceneManager.LoadScene("menu");
+    }
+
+    public void nextLevel()
+    {
+        if (Game.gameOver) Game.initializeGame();
+        else Game.nextLevel();
+    }
+
+    public void loadHome()
     {
         loadScene("menu");
     }
@@ -54,7 +70,6 @@ public class UIController : MonoBehaviour {
     {
         loadScene("park");
     }
-
 
     private static void loadScene(string scene)
     {
@@ -85,11 +100,21 @@ public class UIController : MonoBehaviour {
             else if ("park".Equals(scene)) duration = 900; // 15 min
         }
 
-        Game.warpTime(duration, "car", scene);
+        string destination = "menu".Equals(scene) ? "home" : scene.ToString();
+        Game.warpTime(duration, "car", "travelling to "+destination, scene);
+        Game.tries = 0; // reset tries when travelling to another scene
     }
 
     public void makeCall()
     {
-        Game.warpTime(600, "phone", "menu");
+        string info = Game.newInfo(); // maybe display this on call screen?
+        if (info != null)
+        {                              
+            Game.warpTime(600, "phone", "A witness told you: \"" +info+"\"", "menu");
+        }
+        else
+        {
+            Game.warpTime(1, "phone", "No additional Information available.", "menu");
+        }
     }
 }

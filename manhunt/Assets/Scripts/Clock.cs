@@ -25,7 +25,7 @@ public class Clock : MonoBehaviour {
             if (timeLeft <= 0)
             {
                 Game.gameOver = true;
-                Game.showInfo("gameover", "Game Over", "OK", "menu");
+                Game.showInfo("gameover", "GAME OVER", "Restart", "menu");
             }
 
         }

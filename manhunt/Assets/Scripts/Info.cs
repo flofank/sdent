@@ -13,20 +13,17 @@ public class Info : MonoBehaviour {
     private static int WARP_SPEED = 10;
     private double warpSpeed = 0.1;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start()
     {
         GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("loading/" + icon);
+        transform.FindChild("infoText").gameObject.SetActive(true);
+        transform.FindChild("infoText").gameObject.GetComponent<Text>().text = infoText;
+
         if (info)
         {
-            transform.FindChild("infoText").gameObject.SetActive(true);
-            transform.FindChild("infoText").gameObject.GetComponent<Text>().text = infoText;
             transform.FindChild("button").gameObject.SetActive(true);
             transform.FindChild("button").FindChild("buttonText").gameObject.GetComponent<Text>().text = buttonText;
-        } else
-        {
-            transform.FindChild("button").gameObject.SetActive(false);
-            transform.FindChild("infoText").gameObject.SetActive(false);
         }
     }
 	

@@ -7,7 +7,7 @@ public class Crowd : MonoBehaviour {
     public GameObject CharacterPrefab;
     public int crowdSize;
     public int minSpeed = 20;
-    public int maxSpeed = 70;
+    public int maxSpeed = 50;
     System.Random rnd = new System.Random();
 
     // Use this for initialization
@@ -22,7 +22,8 @@ public class Crowd : MonoBehaviour {
 
         int speed = 0;
 
-        if (SceneManager.GetActiveScene().name.Equals(Game.offender.scene.ToString()))
+        // offender
+        if (SceneManager.GetActiveScene().name.Equals(Game.offender.location.ToString()))
         {
             // Create Wanted person
             GameObject wanted = Instantiate<GameObject>(CharacterPrefab);
@@ -35,6 +36,26 @@ public class Crowd : MonoBehaviour {
             crowdSize--;
         }
 
+        // suspects
+        foreach (Character sus in Game.suspects) {
+            if (!sus.Equals(Game.offender) && SceneManager.GetActiveScene().name.Equals(sus.location.ToString()))
+            { 
+                // Create Suspect
+                GameObject suspect = Instantiate<GameObject>(CharacterPrefab);
+                suspect.GetComponent<CharacterBuilder>().zLayer = 99;
+                suspect.GetComponent<CharacterBuilder>().c = sus;
+                do {
+                    speed = rnd.Next(minSpeed, maxSpeed + 1);
+                } while (speedList.Contains(speed));
+                speedList.Add(speed);
+                suspect.GetComponent<MoveOnPath>().Speed = speed;
+                suspect.AddComponent<Suspect>();
+                crowdSize--;
+            }
+        }
+
+
+        // others
         for (int i = 0; i < crowdSize; i++)
         {
             GameObject character = Instantiate<GameObject>(CharacterPrefab);

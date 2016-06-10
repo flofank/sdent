@@ -2,19 +2,23 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class Wanted : MonoBehaviour {
+public class Suspect : MonoBehaviour
+{
 
     // Use this for initialization
-    void Start () {
-    
+    void Start()
+    {
+
     }
-    
+
     // Update is called once per frame
-    void Update () {
-        
+    void Update()
+    {
+
     }
+
     void OnMouseDown()
     {
-        Game.showInfo("prison", "You found the offender!\nPrepare for the next case!", "Let's go!", "menu");
+        Game.warpTime(1800, "questioning", "The questioning showed that this suspect is not the offender.", "menu");
     }
 }

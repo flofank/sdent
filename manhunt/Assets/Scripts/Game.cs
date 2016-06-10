@@ -5,20 +5,24 @@ using System;
 using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour {
-    public static int timeAvailable = 43200; //12h
-    public static float startTime = Time.time;
+    public static int timeAvailable;
+    public static float startTime;
     public static int CROWD_SIZE = 200;
     public static int SUSPECTS = 6;
+    public static int MAX_NOTES = 17;
     private static bool ready = false;
     public static List<Character> crowd;
     public static List<Character> suspects;
     public static Character offender;
     private static System.Random r = new System.Random();
-    public static int tries = 0;
-    public static bool gameOver;
+    public static int tries;
+    public static bool gameOver = false;
+    public static int level;
+    public static List<string> hints = new List<string>();
+    public static int noteCount;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         if (!ready)
         {
             initializeGame();
@@ -30,13 +34,41 @@ public class Game : MonoBehaviour {
 	
 	}
 
-    private static void initializeGame()
+    public static void initializeGame()
     {
+        print("initializing...");
         gameOver = false;
         generateCrowd();
         pickSuspects();
         pickOffender();
         ready = true;
+        level = 1;
+        createHintList();
+        noteCount = 0;
+        tries = 0;
+        Notes.text = "";
+
+        timeAvailable = 43200; // 12h
+        startTime = Time.time;
+        SceneManager.LoadScene("menu");
+    }
+
+    public static void nextLevel()
+    {
+        generateCrowd();
+        pickSuspects();
+        pickOffender();
+        createHintList();
+        noteCount = 0;
+        tries = 0;
+        Notes.text = "";
+
+        int timeBonus = 43200 - (level * 3600) > 3600 ? 25200 - (level * 3600) : 3600; // 12h - 1h pro level, min 1h
+        level++;
+        print("Reached level " + level);
+        addTime(timeBonus);
+
+        SceneManager.LoadScene("menu");
     }
 
     private static void generateCrowd()
@@ -102,23 +134,24 @@ public class Game : MonoBehaviour {
         suspects = new List<Character>();
         while (suspects.Count < SUSPECTS)
         {
-            var i = r.Next(crowd.Count - 1);
-            suspects.Add(crowd[i]);
+            var i = r.Next(crowd.Count);
+            Character suspect = crowd[i];
             crowd.RemoveAt(i);
+
+            i = r.Next(3);
+            Character.Location location = Character.Location.forest;
+            if (i == 0) location = Character.Location.park;
+            else if (i == 1) location = Character.Location.mall;
+
+            suspect.location = location;
+            suspects.Add(suspect);
         }
     }
 
     private static void pickOffender()
     {
-        var i = r.Next(suspects.Count - 1);
+        var i = r.Next(suspects.Count);
         offender = suspects[i];
-
-        i = r.Next(3);
-        Character.Scene scene = Character.Scene.forest;
-        if (i == 0) scene = Character.Scene.park;
-        else if (i == 1) scene = Character.Scene.mall;
-
-        offender.scene = scene;
     }
 
     public static List<Character> getCrowd()
@@ -140,13 +173,14 @@ public class Game : MonoBehaviour {
         timeAvailable = timeAvailable + seconds;
     }
 
-    public static void warpTime(int seconds, string icon, string followingScene)
+    public static void warpTime(int seconds, string icon, string infoText, string followingScene)
     {
         print("Warping " + seconds + " because of " + icon + " going to " + followingScene);
         Info.info = false;
         Info.timeToWarp = seconds;
         Info.sceneToLoad = followingScene;
         Info.icon = icon;
+        Info.infoText = infoText;
         SceneManager.LoadScene("info");
     }
 
@@ -160,4 +194,173 @@ public class Game : MonoBehaviour {
         SceneManager.LoadScene("info");
     }
 
+    public static string newInfo()
+    {
+        if (hints.Count == 0 || noteCount >= MAX_NOTES)
+        {
+            return null;
+        }
+
+        int i = r.Next(hints.Count);
+        string hint = hints[i];
+        hints.RemoveAt(i);
+        Notes.text += hint + "\n";
+        noteCount++;
+
+        return hint;
+    }
+
+
+    public static void createHintList()
+    {
+        hints = new List<string>();
+
+        // bold
+        hints.Add(offender.isBold ? "He was completely bold!" : "He had hair on his head.");
+        // beard
+        hints.Add(offender.hasBeard ? "He had a beard or moustache." : "He had no beard.");
+
+        // skin color
+        if (offender.body.Equals(Character.Body.bold0))
+        {
+            if(level == 1) hints.Add("His skin was white.");
+            else if (level >= 2)
+            {
+                hints.Add("His skin was not brown");
+                hints.Add("His skin was not light brown");
+            }
+        }
+        else if (offender.body.Equals(Character.Body.bold1))
+        {
+            if(level == 1) hints.Add("His skin was brown.");
+            else if (level >= 2)
+            {
+               hints.Add("His skin was not white");
+               hints.Add("His skin was not light brown");
+            }
+        }
+        else if (offender.body.Equals(Character.Body.bold2))
+        {
+            if(level==1) hints.Add("His skin was light brown.");
+            else if (level >= 2)
+            {
+                hints.Add("His skin was not brown");
+                hints.Add("His skin was not white");
+            }
+        }
+
+        // eye color
+        string eyecolor = offender.eye.ToString();
+        if (level < 3) // 1 - 2
+        {
+            hints.Add("He had " + eyecolor + " eyes.");
+        } 
+        else if (level < 6) // 3 - 5
+        {
+            List<string> eyes = Character.getEyeColors();
+            eyes.Remove(offender.eye.ToString());
+            
+            int j = r.Next(eyes.Count);
+            string wrong = eyes[j];
+            eyes.RemoveAt(j);
+            hints.Add("He had " + eyecolor + " or" + wrong +" eyes.");
+
+            j = r.Next(eyes.Count);
+            wrong = eyes[j];
+            hints.Add("He had " + wrong + " or" + eyecolor + " eyes.");
+        }
+        else // 6+
+        {
+            List<string> eyes = Character.getEyeColors();
+            eyes.Remove(offender.eye.ToString());
+
+            string wrong = eyes[0];
+            string wrong2 = eyes[1];
+            string wrong3 = eyes[2];
+            string wrong4 = eyes[3];
+
+            hints.Add("He didn't have " + wrong + "or" + wrong3 + " eyes.");
+            hints.Add("He didn't have " + wrong2 + "or" + wrong4 + " eyes.");
+        }
+
+        // hair color
+        string haircolor = offender.haircolor.ToString();
+        if(level == 1) hints.Add("He had " + haircolor + " hair.");
+        else if( level < 5) // 2 - 4
+        {
+            List<string> haircolors = Character.getHairColors();
+            haircolors.Remove(haircolor);
+
+            int j = r.Next(haircolors.Count);
+            string wrong = haircolors[j];
+            haircolors.RemoveAt(j);
+            hints.Add("He had " + haircolor + " or " + wrong + " hair.");
+
+            j = r.Next(haircolors.Count);
+            wrong = haircolors[j];
+            hints.Add("He had " + wrong + " or " + haircolor + " hair.");
+        }
+        else // 5+
+        {
+            List<string> haircolors = Character.getHairColors();
+            haircolors.Remove(haircolor);
+
+            string wrong = haircolors[0];
+            string wrong2 = haircolors[1];
+            string wrong3 = haircolors[2];
+            string wrong4 = haircolors[3];
+
+            hints.Add("He didn't have " + wrong + "or" + wrong3 + " hair.");
+            hints.Add("He didn't have " + wrong2 + "or" + wrong4 + " hair.");
+        }
+        
+
+
+        // top
+        string[] top = offender.top.ToString().Split('_');
+        string type = top[0];
+        string color = top[1];
+        if (level < 7)
+        {
+            hints.Add("He wore a " + color + " " + type + ".");
+        }
+        else
+        {
+            hints.Add("He wore a " + type + ".");
+            hints.Add("His top was " + color);
+        }
+
+        // trousers
+        string trousers = offender.trousers.ToString();
+        if (level < 4) hints.Add("His trousers were " + trousers + ".");
+        else // 4+
+        {
+            List<string> trouserColors = Character.getTrouserColors();
+            trouserColors.Remove(trousers);
+
+            foreach (string s in trouserColors) {
+                hints.Add("His trousers were not " + s + ".");
+            }
+
+        }
+
+        // location
+        if (level < 3)
+        {
+            hints.Add("I saw him at the " + offender.location.ToString() + ".");
+        }
+        else // 3+
+        {
+            List<string> list = Character.getLocations();
+            list.Remove(offender.location.ToString());
+            foreach(string s in list) hints.Add("He was not at the " + s + ".");
+        }
+
+
+        // can't remember
+        for(int i = 0; i < level; i++)
+        {
+            hints.Add("I can't remember anything.");
+        }
+    }
 }
