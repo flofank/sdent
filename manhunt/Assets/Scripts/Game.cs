@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using UnityEngine.SceneManagement;
 
 public class Game : MonoBehaviour {
     public static int timeAvailable = 43200; //12h
@@ -136,4 +137,13 @@ public class Game : MonoBehaviour {
     {
         timeAvailable = timeAvailable + seconds;
     }
+
+    public static void warpTime(int seconds, string reason, string followingScene)
+    {
+        Loading.timeToWarp = seconds;
+        Loading.sceneToLoad = followingScene;
+        Loading.warpReason = reason;
+        SceneManager.LoadScene("loading");
+    }
+
 }

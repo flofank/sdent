@@ -85,12 +85,11 @@ public class UIController : MonoBehaviour {
             else if ("park".Equals(scene)) duration = 900; // 15 min
         }
 
-        SceneManager.LoadScene(scene);
-        Game.skipTime(duration);
+        Game.warpTime(duration, "car", scene);
     }
 
     public void makeCall()
     {
-        Game.skipTime(600);
+        Game.warpTime(600, "phone", "menu");
     }
 }

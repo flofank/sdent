@@ -15,6 +15,6 @@ public class Wanted : MonoBehaviour {
     }
     void OnMouseDown()
     {
-        SceneManager.LoadScene("menu");
+        Game.warpTime(1800, "questioning", "menu");
     }
 }
