@@ -32,7 +32,6 @@ public class Crowd : MonoBehaviour {
             speedList.Add(speed);
             wanted.GetComponent<MoveOnPath>().Speed = speed;
             wanted.AddComponent<Wanted>();
-
             crowdSize--;
         }
 

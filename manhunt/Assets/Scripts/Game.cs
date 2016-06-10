@@ -15,6 +15,7 @@ public class Game : MonoBehaviour {
     public static Character offender;
     private static System.Random r = new System.Random();
     public static int tries = 0;
+    public static bool gameOver;
 
 	// Use this for initialization
 	void Start () {
@@ -31,6 +32,7 @@ public class Game : MonoBehaviour {
 
     private static void initializeGame()
     {
+        gameOver = false;
         generateCrowd();
         pickSuspects();
         pickOffender();
@@ -138,12 +140,24 @@ public class Game : MonoBehaviour {
         timeAvailable = timeAvailable + seconds;
     }
 
-    public static void warpTime(int seconds, string reason, string followingScene)
+    public static void warpTime(int seconds, string icon, string followingScene)
     {
-        Loading.timeToWarp = seconds;
-        Loading.sceneToLoad = followingScene;
-        Loading.warpReason = reason;
-        SceneManager.LoadScene("loading");
+        print("Warping " + seconds + " because of " + icon + " going to " + followingScene);
+        Info.info = false;
+        Info.timeToWarp = seconds;
+        Info.sceneToLoad = followingScene;
+        Info.icon = icon;
+        SceneManager.LoadScene("info");
+    }
+
+    public static void showInfo(string infoIcon, string infoText, string buttonText, string followingScene)
+    {
+        Info.info = true;
+        Info.icon = infoIcon;
+        Info.sceneToLoad = followingScene;
+        Info.infoText = infoText;
+        Info.buttonText = buttonText;
+        SceneManager.LoadScene("info");
     }
 
 }
