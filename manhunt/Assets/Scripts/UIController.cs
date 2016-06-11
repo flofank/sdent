@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEditor;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIController : MonoBehaviour {
     public GameObject File = null;
@@ -24,6 +25,7 @@ public class UIController : MonoBehaviour {
                 hideFile();
             else
                 File.SetActive(true);
+            File.transform.FindChild("Case").GetComponent<Text>().text = Game.Case;
         }
     }
 
