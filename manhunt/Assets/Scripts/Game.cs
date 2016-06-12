@@ -382,14 +382,14 @@ public class Game : MonoBehaviour {
         Cases = new List<string>();
         Cases.Add("Hello Sherlock. A valuable watch was stolen from the jewelry store in downtown. To find it again, and to convict the perpetrators, we need your help. Find the thief who stole the watch.");
         Cases.Add("Hello Sherlock. At the antiquariat dealer an ancient, very valuable book with gold-plated cover was stolen. We need your help to recover it and to convict the offender.");
-        Cases.Add("Hello Sherlock. A drug dealer driving in the city on the loose and tried to sell methamphetamines. In order to protect our citizens and to put an end to the activities we depend on your help. Expose the drug dealer.");
-        Cases.Add("Hello Sherlock. Last night in a side street was a young women found shot dead. To find the murderer, we need your help.");
-        Cases.Add("Hello Sherlock. Our city is in danger. An insider trying to sell information about our power and water supply to criminals. Stop him before the data fall into the wrong hands and the city to come to harm.");
-        Cases.Add("Hello Sherlock. Yesterday an old lady was raided in her house. The thief had it in their antique jewelry, which he is now trying to sell. We need your help to grab the thief before he can sell the jewelry.");
-        Cases.Add("Hello Sherlock. Last night was the City Bank robbed. The bank robber has cleared all safes and caused great material damage. We need your help to find the bank robber.");
+        Cases.Add("Hello Sherlock. A drug dealer driving in the city is on the loose and tried to sell methamphetamines. In order to protect our citizens and to put an end to the activities we depend on your help. Expose the drug dealer.");
+        Cases.Add("Hello Sherlock. Last night in a side street a young women was found shot dead. To find the murderer, we need your help.");
+        Cases.Add("Hello Sherlock. Our city is in danger. An insider is trying to sell information about our power and water supply to criminals. Stop him before the data gets into the wrong hands and the city to comes to harm.");
+        Cases.Add("Hello Sherlock. Yesterday an old lady was raided in her house. The thief took her antique jewelry, which he is now trying to sell. We need your help to grab the thief before he can sell the jewelry.");
+        Cases.Add("Hello Sherlock. Last night the City Bank was robbed. The bank robber has cleared all safes and caused huge material damage. We need your help to find the him.");
         Cases.Add("Hello Sherlock. We have found out that a trafficker is trying to find a victim in our city. Unfortunately we do not yet know who will be the victim. Help us to prevent this horrible crime and unmask the culprit in time.");
         Cases.Add("Hello Sherlock. Based on our information, we assume that on the next big sporting event in our city a bomb will go off. Find the assassin and hold him before someone gets hurt.");
-        Cases.Add("Hello Sherlock. Last night has landed an unknown aircraft on our airfield. Inside the aircraft we have found stolen art. Help us to find the art thief, so he can’t steal art in our city.");
-        Cases.Add("Hello Sherlock. This morning, were several computers and laptops stolen in a local school. As we suspect will the thief be trying to sell the equipment on the black market. We have to stop him and need your help.");
+        Cases.Add("Hello Sherlock. Last night an unknown aircraft has landed on our airfield. Inside the aircraft we found stolen art. Help us find the art thief, so he can’t steal art in our city.");
+        Cases.Add("Hello Sherlock. This morning, several computers and laptops were stolen from a local school. We suspect the thief will be trying to sell the equipment on the black market. We have to stop him and need your help.");
     }
 }
