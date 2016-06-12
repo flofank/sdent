@@ -38,7 +38,6 @@ public class Game : MonoBehaviour {
 
     public static void initializeGame()
     {
-        print("initializing...");
         gameOver = false;
         generateCrowd();
         pickSuspects();
@@ -179,7 +178,6 @@ public class Game : MonoBehaviour {
 
     public static void warpTime(int seconds, string icon, string infoText, string followingScene)
     {
-        print("Warping " + seconds + " because of " + icon + " going to " + followingScene);
         Info.info = false;
         Info.timeToWarp = seconds;
         Info.sceneToLoad = followingScene;
