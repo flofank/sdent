@@ -6,10 +6,15 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour {
     public GameObject File = null;
+    public GameObject Level = null;
 
 	// Use this for initialization
 	void Start () {
         hideFile();
+        if (Level != null)
+        {
+            Level.GetComponent<Text>().text = "Level " + Game.level;
+        }
 	}
 	
 	// Update is called once per frame
