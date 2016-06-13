@@ -30,6 +30,8 @@ public class UIController : MonoBehaviour {
                 hideFile();
             else
                 File.SetActive(true);
+
+            if(File.transform.FindChild("Case") != null)
             File.transform.FindChild("Case").GetComponent<Text>().text = Game.Case;
         }
     }

@@ -15,6 +15,6 @@ public class Wanted : MonoBehaviour {
     }
     void OnMouseDown()
     {
-        Game.showInfo("prison", "You found the offender!\nPrepare for the next case!", "Let's go!", "menu");
+        Game.showInfo("prison", "SUCCESS! You found the offender!\nPrepare for the next case!", "Let's go!", "menu");
     }
 }
