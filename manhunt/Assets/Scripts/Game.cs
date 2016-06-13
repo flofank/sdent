@@ -265,11 +265,11 @@ public class Game : MonoBehaviour {
             int j = r.Next(eyes.Count);
             string wrong = eyes[j];
             eyes.RemoveAt(j);
-            hints.Add("He had " + eyecolor + " or" + wrong +" eyes.");
+            hints.Add("He had " + eyecolor + " or " + wrong +" eyes.");
 
             j = r.Next(eyes.Count);
             wrong = eyes[j];
-            hints.Add("He had " + wrong + " or" + eyecolor + " eyes.");
+            hints.Add("He had " + wrong + " or " + eyecolor + " eyes.");
         }
         else // 6+
         {
@@ -281,8 +281,8 @@ public class Game : MonoBehaviour {
             string wrong3 = eyes[2];
             string wrong4 = eyes[3];
 
-            hints.Add("He didn't have " + wrong + "or" + wrong3 + " eyes.");
-            hints.Add("He didn't have " + wrong2 + "or" + wrong4 + " eyes.");
+            hints.Add("He didn't have " + wrong + "or " + wrong3 + " eyes.");
+            hints.Add("He didn't have " + wrong2 + "or " + wrong4 + " eyes.");
         }
 
         // hair color
@@ -310,10 +310,10 @@ public class Game : MonoBehaviour {
             string wrong = haircolors[0];
             string wrong2 = haircolors[1];
             string wrong3 = haircolors[2];
-            string wrong4 = haircolors[3];
 
-            hints.Add("He didn't have " + wrong + "or" + wrong3 + " hair.");
-            hints.Add("He didn't have " + wrong2 + "or" + wrong4 + " hair.");
+            hints.Add("He didn't have " + wrong + "or " + wrong3 + " hair.");
+            hints.Add("He didn't have " + wrong2 + "or " + wrong + " hair.");
+            hints.Add("He didn't have " + wrong3 + "or " + wrong2 + " hair.");
         }
         
 
